@@ -3,23 +3,23 @@
 from flask import Flask, render_template, request, Markup
 import numpy as np
 import pandas as pd
-from utils.disease import disease_dic
+#from utils.disease import disease_dic
 from utils.fertilizer import fertilizer_dic
 import requests
 import config
 import pickle
-import io
+"""import io
 import torch
 from torchvision import transforms
 from PIL import Image
-from utils.model import ResNet9
+from utils.model import ResNet9"""
 # ==============================================================================================
 
 # -------------------------LOADING THE TRAINED MODELS -----------------------------------------------
 
 # Loading plant disease classification model
 
-disease_classes = ['Apple___Apple_scab',
+"""disease_classes = ['Apple___Apple_scab',
                    'Apple___Black_rot',
                    'Apple___Cedar_apple_rust',
                    'Apple___healthy',
@@ -62,7 +62,7 @@ disease_model_path = 'models/plant_disease_model.pth'
 disease_model = ResNet9(3, len(disease_classes))
 disease_model.load_state_dict(torch.load(
     disease_model_path, map_location=torch.device('cpu')))
-disease_model.eval()
+disease_model.eval() """
 
 
 # Loading crop recommendation model
@@ -99,13 +99,13 @@ def weather_fetch(city_name):
     else:
         return None
 
-
+"""
 def predict_image(img, model=disease_model):
-    """
+    """ """
     Transforms image to tensor and predicts disease label
     :params: image
     :return: prediction (string)
-    """
+    """ """
     transform = transforms.Compose([
         transforms.Resize(256),
         transforms.ToTensor(),
@@ -121,6 +121,7 @@ def predict_image(img, model=disease_model):
     prediction = disease_classes[preds[0].item()]
     # Retrieve the class label
     return prediction
+"""
 
 # ===============================================================================================
 # ------------------------------------ FLASK APP -------------------------------------------------
@@ -237,7 +238,7 @@ def fert_recommend():
 
 # render disease prediction result page
 
-
+"""
 @app.route('/disease-predict', methods=['GET', 'POST'])
 def disease_prediction():
     title = 'Harvestify - Disease Detection'
@@ -258,7 +259,7 @@ def disease_prediction():
         except:
             pass
     return render_template('disease.html', title=title)
-
+"""
 
 # ===============================================================================================
 if __name__ == '__main__':
