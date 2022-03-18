@@ -133,6 +133,7 @@ app = Flask(__name__)
 
 
 @ app.route('/')
+@cross_origin()
 def home():
     title = 'Harvestify - Home'
     return render_template('index.html', title=title)
@@ -141,6 +142,7 @@ def home():
 
 
 @ app.route('/crop-recommend')
+@cross_origin()
 def crop_recommend():
     title = 'Harvestify - Crop Recommendation'
     return render_template('crop.html', title=title)
@@ -149,6 +151,7 @@ def crop_recommend():
 
 
 @ app.route('/fertilizer')
+@cross_origin()
 def fertilizer_recommendation():
     title = 'Harvestify - Fertilizer Suggestion'
 
@@ -166,7 +169,8 @@ def fertilizer_recommendation():
 # render crop recommendation result page
 
 
-@ app.route('/crop-predict', methods=['POST'])
+@ app.route('/crop-predict', methods=["GET","POST"])
+@cross_origin()
 def crop_prediction():
     title = 'Harvestify - Crop Recommendation'
 
@@ -195,7 +199,8 @@ def crop_prediction():
 # render fertilizer recommendation result page
 
 
-@ app.route('/fertilizer-predict', methods=['POST'])
+@ app.route('/fertilizer-predict', methods=["GET","POST"])
+@cross_origin()
 def fert_recommend():
     title = 'Harvestify - Fertilizer Suggestion'
 
